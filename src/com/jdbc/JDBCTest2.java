@@ -7,23 +7,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /*
- * Éè¼ÆÒ»¸ö·½·¨£¬½øĞĞ·ÖÒ³²éÑ¯
+ * è®¾è®¡ä¸€ä¸ªæ–¹æ³•ï¼Œè¿›è¡Œåˆ†é¡µæŸ¥è¯¢
  */
 public class JDBCTest2 {
 	public static void main(String[] args) {
-		// ÎªÁË±£Ö¤jdbc_testÊı¾İ¿âµÄstudent±íÓĞ×ã¹»µÄÊı¾İ£¬ÕâÀïÏÈ¶Ôstudent±íÌí¼Ó100×éÊı¾İ
+		// ä¸ºäº†ä¿è¯jdbc_testæ•°æ®åº“çš„studentè¡¨æœ‰è¶³å¤Ÿçš„æ•°æ®ï¼Œè¿™é‡Œå…ˆå¯¹studentè¡¨æ·»åŠ 100ç»„æ•°æ®
 		Connection c = null;
 		Statement s = null;
 		try {
 			c = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/jdbc_test?serverTimezone=UTC&characterEncoding=UTF-8", 
 					"root",
-					"ygq1813297517");
+					"*****");
 
 			s = c.createStatement();
 
 			for (int i = 0; i < 100; i++) {
-				String addSql = "insert into student values(" + i + ", 'ÕÔÃô', 'Å®', 24, 100)";
+				String addSql = "insert into student values(" + i + ", 'èµµæ•', 'å¥³', 24, 100)";
 				s.execute(addSql);
 			}
 		} catch (SQLException e) {
@@ -41,14 +41,14 @@ public class JDBCTest2 {
 			}
 		}
 
-		// ²âÊÔlist·ÖÒ³²éÑ¯º¯Êı
+		// æµ‹è¯•liståˆ†é¡µæŸ¥è¯¢å‡½æ•°
 		list(20, 10);
 	}
 
-	// ·ÖÒ³²éÑ¯
+	// åˆ†é¡µæŸ¥è¯¢
 	public static void list(int start, int count) {
-		// start±íÊ¾´ÓµÚstartĞĞÊı¾İ¿ªÊ¼£¬count±íÊ¾²éÑ¯¶àÉÙÌõÊı¾İ
-		// ÕâÀï´ÓÒÑ¾­´´½¨ºÃµÄjdbc_testÊı¾İ¿âÀ´²éÑ¯Êı¾İ
+		// startè¡¨ç¤ºä»ç¬¬startè¡Œæ•°æ®å¼€å§‹ï¼Œcountè¡¨ç¤ºæŸ¥è¯¢å¤šå°‘æ¡æ•°æ®
+		// è¿™é‡Œä»å·²ç»åˆ›å»ºå¥½çš„jdbc_testæ•°æ®åº“æ¥æŸ¥è¯¢æ•°æ®
 		Connection c = null;
 		Statement s = null;
 		try {
@@ -63,14 +63,14 @@ public class JDBCTest2 {
 			// System.out.println(selectSql);
 			ResultSet rs = s.executeQuery(selectSql);
 
-			// ±éÀúResultSet£¬¿ÉÒÔµÃµ½²éÑ¯µÄ½á¹û
+			// éå†ResultSetï¼Œå¯ä»¥å¾—åˆ°æŸ¥è¯¢çš„ç»“æœ
 			while (rs.next()) {
-				int id = rs.getInt("id"); // ¿ÉÒÔÊ¹ÓÃ×Ö¶ÎÃû
-				String name = rs.getString(2); // Ò²¿ÉÒÔÊ¹ÓÃ×Ö¶ÎË³Ğò£¬×¢Òâ×Ö¶ÎË³ĞòÊÇ´Ó1¿ªÊ¼µÄ
+				int id = rs.getInt("id"); // å¯ä»¥ä½¿ç”¨å­—æ®µå
+				String name = rs.getString(2); // ä¹Ÿå¯ä»¥ä½¿ç”¨å­—æ®µé¡ºåºï¼Œæ³¨æ„å­—æ®µé¡ºåºæ˜¯ä»1å¼€å§‹çš„
 				String gender = rs.getString("gender");
 				int age = rs.getInt(4);
 				int math = rs.getInt("math");
-				// ÕâÀïÊÇÓÃµÄprintf¸ñÊ½»¯Êä³ö
+				// è¿™é‡Œæ˜¯ç”¨çš„printfæ ¼å¼åŒ–è¾“å‡º
 				System.out.printf("%d-%s-%s-%d-%d\n", id, name, gender, age, math);
 				// System.out.println(id + "-" + name + "-" + gender + "-" + age + "-" + math);
 			}
