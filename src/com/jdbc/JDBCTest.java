@@ -6,47 +6,47 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /*
- * JDBCÑ§Ï°Demo
+ * JDBCå­¦ä¹ Demo
  */
 public class JDBCTest {
 	public static void main(String[] args) {
 		Connection c = null;
 		Statement s = null;
 		try {
-			// ³õÊ¼»¯Çı¶¯Àà
-			// Ã²ËÆĞÂ°æ±¾jdkÏÖÔÚ²»ĞèÒª³õÊ¼»¯Çı¶¯Àà
+			// åˆå§‹åŒ–é©±åŠ¨ç±»
+			// è²Œä¼¼æ–°ç‰ˆæœ¬jdkç°åœ¨ä¸éœ€è¦åˆå§‹åŒ–é©±åŠ¨ç±»
 			// Class.forName("com.mysql.cj.jdbc.Driver");
-			// System.out.println("JDBCÇı¶¯¼ÓÔØ³É¹¦");
+			// System.out.println("JDBCé©±åŠ¨åŠ è½½æˆåŠŸ");
 
-			// ÓëÖ¸¶¨Êı¾İ¿â½¨Á¢Á¬½Ó
+			// ä¸æŒ‡å®šæ•°æ®åº“å»ºç«‹è¿æ¥
 			c = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/jdbc_test?serverTimezone=UTC&characterEncoding=UTF-8", 
 					"root",
-					"ygq1813297517");
+					"*****");
 
-			// „“½¨Statement
+			// å‰µå»ºStatement
 			s = c.createStatement();
-			System.out.println("Êı¾İ¿âÁ¬½Ó³É¹¦£¬»ñÈ¡Á¬½Ó¶ÔÏó£º" + s);
+			System.out.println("æ•°æ®åº“è¿æ¥æˆåŠŸï¼Œè·å–è¿æ¥å¯¹è±¡ï¼š" + s);
 			
-			// Ñ­»·Ö´ĞĞ¶àÌõsqlÓï¾ä
+			// å¾ªç¯æ‰§è¡Œå¤šæ¡sqlè¯­å¥
 			for (int i = 0; i < 100; i++) {
-				// Ôö¼Ó100¸ö¹ùÏå
-				String sql = "insert into student(id, name, gender, age, math)"+ "values("+ i + ", '¹ùÏå', 'Å®', 16, 87)";
+				// å¢åŠ 100ä¸ªéƒ­è¥„
+				String sql = "insert into student(id, name, gender, age, math)"+ "values("+ i + ", 'éƒ­è¥„', 'å¥³', 16, 87)";
 				s.execute(sql);
-				System.out.println("µÚ" + (i + 1) + "ÌõsqlÓï¾äÖ´ĞĞ³É¹¦");
+				System.out.println("ç¬¬" + (i + 1) + "æ¡sqlè¯­å¥æ‰§è¡ŒæˆåŠŸ");
 			}
 			System.out.println("------------------------------");
 			
-			// É¾³ıÓï¾ä
-			String delSql = "delete from student where name = '¹ùÏå'";
+			// åˆ é™¤è¯­å¥
+			String delSql = "delete from student where name = 'éƒ­è¥„'";
 			s.execute(delSql);
-			System.out.println("É¾³ı¹ùÏå³É¹¦");
+			System.out.println("åˆ é™¤éƒ­è¥„æˆåŠŸ");
 			System.out.println("------------------------------");
 			
-			// ĞŞ¸ÄÓï¾ä
-			String modifySql = "update student set age = '27' where name = 'ÄÂÄî´È'";
+			// ä¿®æ”¹è¯­å¥
+			String modifySql = "update student set age = '27' where name = 'ç©†å¿µæ…ˆ'";
 			s.execute(modifySql);
-			System.out.println("ĞŞ¸ÄÄÂÄî´ÈÄêÁä³É¹¦");
+			System.out.println("ä¿®æ”¹ç©†å¿µæ…ˆå¹´é¾„æˆåŠŸ");
 			System.out.println("------------------------------");
 			
 			// } catch (ClassNotFoundException e) {
@@ -66,13 +66,13 @@ public class JDBCTest {
 			}
 		}
 		
-		// ÕâÀïÍ¨¹ıexecute·½·¨À´Ö´ĞĞsqlÓï¾ä
-		String testSql = "insert into student(id, name, gender, age, math) values(886, '¶«·½²»°Ü', 'ÄĞ', null, 88)";
+		// è¿™é‡Œé€šè¿‡executeæ–¹æ³•æ¥æ‰§è¡Œsqlè¯­å¥
+		String testSql = "insert into student(id, name, gender, age, math) values(886, 'ä¸œæ–¹ä¸è´¥', 'ç”·', null, 88)";
 		execute(testSql);
-		System.out.println("µ÷ÓÃexecute·½·¨Ö´ĞĞsqlÓï¾ä³É¹¦");
+		System.out.println("è°ƒç”¨executeæ–¹æ³•æ‰§è¡Œsqlè¯­å¥æˆåŠŸ");
 	}
 	
-	// ¸Ã·½·¨ÒÔsqlÓï¾ä×÷Îª²ÎÊı£¬ÊäÈësqlÓï¾äµ÷ÓÃ¸Ã·½·¨¼´¿ÉÖ´ĞĞÓï¾ä
+	// è¯¥æ–¹æ³•ä»¥sqlè¯­å¥ä½œä¸ºå‚æ•°ï¼Œè¾“å…¥sqlè¯­å¥è°ƒç”¨è¯¥æ–¹æ³•å³å¯æ‰§è¡Œè¯­å¥
 	public static void execute(String sql) {
 		Connection c = null;
 		Statement s = null;
@@ -90,7 +90,7 @@ public class JDBCTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// ÕâÀï¹Ø±ÕStatementºÍConnectionµÄÊ±ºòÒ²ÓĞÒì³£ĞèÒª´¦Àí£¬¸ü¼ÓÑÏ½÷µÄ×ö·¨»¹ÒªÅĞ¶ÏsºÍcÊÇ·ñÎªnull
+			// è¿™é‡Œå…³é—­Statementå’ŒConnectionçš„æ—¶å€™ä¹Ÿæœ‰å¼‚å¸¸éœ€è¦å¤„ç†ï¼Œæ›´åŠ ä¸¥è°¨çš„åšæ³•è¿˜è¦åˆ¤æ–­så’Œcæ˜¯å¦ä¸ºnull
 			try {
 				s.close();
 			} catch (SQLException e) {
