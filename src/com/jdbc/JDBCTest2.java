@@ -18,7 +18,7 @@ public class JDBCTest2 {
 			c = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/jdbc_test?serverTimezone=UTC&characterEncoding=UTF-8", 
 					"root",
-					"ygq1813297517");
+					"**********");
 
 			s = c.createStatement();
 
